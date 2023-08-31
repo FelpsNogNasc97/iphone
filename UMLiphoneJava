@@ -69,6 +69,4 @@ public class iPhone13 extends iPhone implements ReprodutorMusical, AparelhoTelef
             System.out.println("Bateria já está cheia.");
         }
     }
-
-    // ... (outros métodos específicos)
 }
