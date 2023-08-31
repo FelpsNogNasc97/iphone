@@ -1,0 +1,74 @@
+import java.util.ArrayList;
+import java.util.List;
+
+public abstract class iPhone {
+    // ... (mesmo código)
+
+    // Métodos abstratos da classe iPhone
+    public abstract void ligar();
+    public abstract void desligar();
+    public abstract void carregar();
+}
+
+public class iPhone13 extends iPhone implements ReprodutorMusical, AparelhoTelefonico, NavegadorInternet {
+    // ... (atributos e construtor)
+
+    private List<String> musicQueue = new ArrayList<>();
+    private boolean isCallActive = false;
+    private String currentSite = null;
+
+    // Métodos da interface Reprodutor Musical
+    @Override
+    public void reproduzirMusica(String musica, int volume) {
+        if (getBateria() > 10) {
+            System.out.println("Reproduzindo música: " + musica + ", Volume: " + volume);
+            setBateria(getBateria() - 5);
+        } else {
+            System.out.println("Bateria fraca, carregue o iPhone.");
+        }
+    }
+
+    // Métodos da interface Aparelho Telefônico
+    @Override
+    public void fazerLigacao(String numero) {
+        if (!isCallActive) {
+            System.out.println("Chamando " + numero + "...");
+            isCallActive = true;
+        } else {
+            System.out.println("Já existe uma chamada em andamento.");
+        }
+    }
+
+    // ... (outros métodos de interfaces)
+
+    // Métodos abstratos da classe iPhone
+    @Override
+    public void ligar() {
+        System.out.println("iPhone 13 ligado.");
+        setBateria(100);
+    }
+
+    @Override
+    public void desligar() {
+        if (!isCallActive) {
+            System.out.println("iPhone 13 desligado.");
+        } else {
+            System.out.println("Não é possível desligar durante uma chamada ativa.");
+        }
+    }
+
+    @Override
+    public void carregar() {
+        if (getBateria() < 100) {
+            System.out.println("Carregando iPhone 13...");
+            setBateria(getBateria() + 20);
+            if (getBateria() > 100) {
+                setBateria(100);
+            }
+        } else {
+            System.out.println("Bateria já está cheia.");
+        }
+    }
+
+    // ... (outros métodos específicos)
+}
